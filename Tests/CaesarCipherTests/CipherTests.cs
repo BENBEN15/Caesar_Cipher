@@ -39,7 +39,7 @@ namespace Tests.CaesarCipherTests
         {
             //Arrange
             string message = "Hello Wor ld ";
-            string encryptedMessage = "Khoor Zru og";
+            string encryptedMessage = "Khoor Zru og ";
             int shift = 3;
 
             //Act
@@ -69,8 +69,52 @@ namespace Tests.CaesarCipherTests
         {
             //Arrange
             string message = "HelloWorld";
+            string encryptedMessage = "KhoorZruog";
+            int shift = 29;
+
+            //Act
+            string result = Cipher.Encrypt(message, shift);
+
+            //Assert
+            Assert.Equal(encryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Encrypt_Message_Null()
+        {
+            //Arrange
+            string encryptedMessage = "";
+            int shift = 3;
+
+            //Act
+            string result = Cipher.Encrypt(null, shift);
+
+            //Assert
+            Assert.Equal(encryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Encrypt_Message_Negative_Shift()
+        {
+            //Arrange
+            string message = "HelloWorld";
+            string encryptedMessage = "EbiilTloia";
+            int shift = -3;
+
+            //Act
+            string result = Cipher.Encrypt(message, shift);
+
+            //Assert
+            Assert.Equal(encryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Encrypt_Message_Shift_Zero()
+        {
+            //Arrange
+            string message = "HelloWorld";
             string encryptedMessage = "HelloWorld";
-            int shift = 27;
+            int shift = 0;
 
             //Act
             string result = Cipher.Encrypt(message, shift);
@@ -144,14 +188,58 @@ namespace Tests.CaesarCipherTests
         {
             //Arrange
             string encryptedMessage = "KhoorZruog";
-            string decryptedMessage = "KhoorZruog";
-            int shift = 27;
+            string decryptedMessage = "HelloWorld";
+            int shift = 29;
 
             //Act
             string result = Cipher.Decrypt(encryptedMessage, shift);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Decrypt_Message_Null()
+        {
+            //Arrange
+            string decryptedMessage = "";
+            int shift = 3;
+
+            //Act
+            string result = Cipher.Decrypt(null, shift);
+
+            //Assert
+            Assert.Equal(decryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Decrypt_Message_Negative_Shift()
+        {
+            //Arrange
+            string message = "EbiilTloia";
+            string encryptedMessage = "HelloWorld";
+            int shift = -3;
+
+            //Act
+            string result = Cipher.Decrypt(message, shift);
+
+            //Assert
+            Assert.Equal(encryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Decrypt_Message_Shift_Zero()
+        {
+            //Arrange
+            string message = "HelloWorld";
+            string encryptedMessage = "HelloWorld";
+            int shift = 0;
+
+            //Act
+            string result = Cipher.Decrypt(message, shift);
+
+            //Assert
+            Assert.Equal(encryptedMessage, result);
         }
     }
 }
