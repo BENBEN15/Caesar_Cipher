@@ -8,5 +8,14 @@ namespace Caesar_Cipher
 {
     static class Cipher
     {
+        static string Encrypt(string message, int shift)
+        {
+            return "";
+        }
+
+        static string Decrypt(string decryptedMessage, int shift)
+        {
+            return "";
+        }
     }
 }
