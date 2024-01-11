@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Caesar_Cipher
+﻿namespace Caesar_Cipher
 {
-    static class Cipher
+    public static class Cipher
     {
-        static string Encrypt(string message, int shift)
+        public static string Encrypt(string message, int shift)
         {
             return "";
         }
 
-        static string Decrypt(string decryptedMessage, int shift)
+        public static string Decrypt(string decryptedMessage, int shift)
         {
             return "";
         }
