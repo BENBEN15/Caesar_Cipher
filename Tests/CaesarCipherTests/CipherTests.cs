@@ -10,10 +10,10 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string message = "HelloWorld";
             string encryptedMessage = "KhoorZruog";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Encrypt(message, shift);
+            string result = Cipher.Encrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
@@ -25,10 +25,10 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string message = "Hello,World!";
             string encryptedMessage = "Khoor,Zruog!";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Encrypt(message, shift);
+            string result = Cipher.Encrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
@@ -40,10 +40,10 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string message = "Hello Wor ld ";
             string encryptedMessage = "Khoor Zru og ";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Encrypt(message, shift);
+            string result = Cipher.Encrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
@@ -55,25 +55,25 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string message = "HelloWorld123";
             string encryptedMessage = "KhoorZruog123";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Encrypt(message, shift);
+            string result = Cipher.Encrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
         }
 
         [Fact]
-        public void Caesar_Cipher_Encrypt_Message_Shift_More_Than_26()
+        public void Caesar_Cipher_Encrypt_Message_offset_More_Than_26()
         {
             //Arrange
             string message = "HelloWorld";
-            string encryptedMessage = "KhoorZruog";
-            int shift = 29;
+            string encryptedMessage = "LippsAsvph";
+            int offset = 30;
 
             //Act
-            string result = Cipher.Encrypt(message, shift);
+            string result = Cipher.Encrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
@@ -84,40 +84,40 @@ namespace Tests.CaesarCipherTests
         {
             //Arrange
             string encryptedMessage = "";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Encrypt(null, shift);
+            string result = Cipher.Encrypt(null, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
         }
 
         [Fact]
-        public void Caesar_Cipher_Encrypt_Message_Negative_Shift()
-        {
-            //Arrange
-            string message = "HelloWorld";
-            string encryptedMessage = "EbiilTloia";
-            int shift = -3;
-
-            //Act
-            string result = Cipher.Encrypt(message, shift);
-
-            //Assert
-            Assert.Equal(encryptedMessage, result);
-        }
-
-        [Fact]
-        public void Caesar_Cipher_Encrypt_Message_Shift_Zero()
+        public void Caesar_Cipher_Encrypt_Message_offset_Zero()
         {
             //Arrange
             string message = "HelloWorld";
             string encryptedMessage = "HelloWorld";
-            int shift = 0;
+            int offset = 0;
 
             //Act
-            string result = Cipher.Encrypt(message, shift);
+            string result = Cipher.Encrypt(message, offset);
+
+            //Assert
+            Assert.Equal(encryptedMessage, result);
+        }
+
+        [Fact]
+        public void Caesar_Cipher_Encrypt_Message_offset_High()
+        {
+            //Arrange
+            string message = "HelloWorld";
+            string encryptedMessage = "CzggjRjmgy";
+            int offset = 12345;
+
+            //Act
+            string result = Cipher.Encrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
@@ -129,10 +129,10 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string encryptedMessage = "KhoorZruog";
             string decryptedMessage = "HelloWorld";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Decrypt(encryptedMessage, shift);
+            string result = Cipher.Decrypt(encryptedMessage, offset);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
@@ -144,10 +144,10 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string encryptedMessage = "Khoor,Zruog!";
             string decryptedMessage = "Hello,World!";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Decrypt(encryptedMessage, shift);
+            string result = Cipher.Decrypt(encryptedMessage, offset);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
@@ -159,10 +159,10 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string encryptedMessage = "Khoor Zru og";
             string decryptedMessage = "Hello Wor ld";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Decrypt(encryptedMessage, shift);
+            string result = Cipher.Decrypt(encryptedMessage, offset);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
@@ -174,25 +174,25 @@ namespace Tests.CaesarCipherTests
             //Arrange
             string encryptedMessage = "KhoorZruog123";
             string decryptedMessage = "HelloWorld123";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Decrypt(encryptedMessage, shift);
+            string result = Cipher.Decrypt(encryptedMessage, offset);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
         }
 
         [Fact]
-        public void Caesar_Cipher_Decrypt_Message_Numbers_Shift_More_Than_26()
+        public void Caesar_Cipher_Decrypt_Message_Numbers_offset_More_Than_26()
         {
             //Arrange
-            string encryptedMessage = "KhoorZruog";
+            string encryptedMessage = "LippsAsvph";
             string decryptedMessage = "HelloWorld";
-            int shift = 29;
+            int offset = 30;
 
             //Act
-            string result = Cipher.Decrypt(encryptedMessage, shift);
+            string result = Cipher.Decrypt(encryptedMessage, offset);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
@@ -203,43 +203,43 @@ namespace Tests.CaesarCipherTests
         {
             //Arrange
             string decryptedMessage = "";
-            int shift = 3;
+            int offset = 3;
 
             //Act
-            string result = Cipher.Decrypt(null, shift);
+            string result = Cipher.Decrypt(null, offset);
 
             //Assert
             Assert.Equal(decryptedMessage, result);
         }
 
         [Fact]
-        public void Caesar_Cipher_Decrypt_Message_Negative_Shift()
+        public void Caesar_Cipher_Decrypt_Message_offset_Zero()
         {
             //Arrange
-            string message = "EbiilTloia";
+            string message = "HelloWorld";
             string encryptedMessage = "HelloWorld";
-            int shift = -3;
+            int offset = 0;
 
             //Act
-            string result = Cipher.Decrypt(message, shift);
+            string result = Cipher.Decrypt(message, offset);
 
             //Assert
             Assert.Equal(encryptedMessage, result);
         }
 
         [Fact]
-        public void Caesar_Cipher_Decrypt_Message_Shift_Zero()
+        public void Caesar_Cipher_Decrypt_Message_offset_High()
         {
             //Arrange
-            string message = "HelloWorld";
-            string encryptedMessage = "HelloWorld";
-            int shift = 0;
+            string decryptedMessage = "HelloWorld";
+            string encryptedMessage = "CzggjRjmgy";
+            int offset = 12345;
 
             //Act
-            string result = Cipher.Decrypt(message, shift);
+            string result = Cipher.Decrypt(encryptedMessage, offset);
 
             //Assert
-            Assert.Equal(encryptedMessage, result);
+            Assert.Equal(decryptedMessage, result);
         }
     }
 }
