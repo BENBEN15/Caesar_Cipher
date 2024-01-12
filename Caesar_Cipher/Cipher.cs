@@ -6,11 +6,11 @@ namespace Caesar_Cipher
     {
         private const int ALPHABET_SIZE = 26;
 
-        public static string Encrypt(string? message, int shift)
+        public static string Encrypt(string? message, int offset)
         {
             //Parameters validation
             if (message == null) return "";
-            if (string.IsNullOrEmpty(message) || shift == 0) return message;
+            if (string.IsNullOrEmpty(message) || offset == 0) return message;
 
             //Encrypting
 
@@ -20,9 +20,14 @@ namespace Caesar_Cipher
             {
                 if (Char.IsLetter(c)) 
                 {
-                    //Char incrementation, Modulo is used to stay within the range of the alphabet
-                    char shiftedChar = (char) (c + (shift % ALPHABET_SIZE));
-                    encryptedMessage.Append(shiftedChar);
+                    //Defines where A sits in ASCII depending of uppercase or not
+                    int baseChar = char.IsUpper(c) ? 'A' : 'a';
+
+                    //Here we find the difference between our letter and A to know it's position within the aplhabet
+                    //and then whe add the offset to crypt the letter, then we add back the base letter value to go back to ASCII
+                    int offsetPosition = ((c - baseChar + offset) % ALPHABET_SIZE) + baseChar;
+
+                    encryptedMessage.Append((char)offsetPosition);
                 } 
                 else
                 {
@@ -33,11 +38,11 @@ namespace Caesar_Cipher
             return encryptedMessage.ToString();
         }
 
-        public static string Decrypt(string? encryptedMessage, int shift)
+        public static string Decrypt(string? encryptedMessage, int offset)
         {
             //Parameters validation
             if (encryptedMessage == null) return "";
-            if (string.IsNullOrEmpty(encryptedMessage) || shift == 0) return encryptedMessage;
+            if (string.IsNullOrEmpty(encryptedMessage) || offset == 0) return encryptedMessage;
 
             //Decryptring
 
@@ -47,9 +52,19 @@ namespace Caesar_Cipher
             {
                 if (Char.IsLetter(c))
                 {
-                    //Char decrementation, Modulo is used to stay within the range of the alphabet
-                    char shiftedChar = (char)(c - (shift % ALPHABET_SIZE));
-                    decryptedMessage.Append(shiftedChar);
+                    //Defines where A sits in ASCII depending of uppercase or not
+                    int baseChar = char.IsUpper(c) ? 'A' : 'a';
+
+                    //Here we do the same thing as encryption except that we substract the offset.
+                    int initialResult = c - baseChar - offset;
+
+                    //Modulus that handles potential negative value with the formula : ((a % b) + b) % b
+                    int negativeModulus = ((initialResult % ALPHABET_SIZE) + ALPHABET_SIZE) % ALPHABET_SIZE;
+
+                    //Redfine ASCII caracter 
+                    int offsetPosition = negativeModulus + baseChar;
+
+                    decryptedMessage.Append((char)offsetPosition);
                 }
                 else
                 {
